@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "type": "mssql.local",
+      "connectionId": "AppWebContextConnection"
+    },
+    "mssql2": {
+      "type": "mssql.local",
+      "connectionId": "AppDevIoIdentityDbContextConnection"
+    },
+    "mssql3": {
+      "type": "mssql.local",
+      "connectionId": "IdentityAppWebContextConnection"
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "projects": [
+    "src",
+    "test"
+  ],
+  "sdk": {
+    "version": "2.2.0"
+  },
+  "installPackagesImportants": {
+    "projectData": [
+      {
+        "p01": "Install-Package Microsoft.EntityFrameworkCore -Version 2.2.0",
+        "version": "2.2.0"
+      },
+      {
+        "p02": "install-package Microsoft.EntityFrameworkCore.Relational -Version 2.2.0",
+        "version": "2.2.0"
+      },
+      {
+        "p03": "install-package Microsoft.EntityFrameworkCore.Design -Version 2.2.0",
+        "version": "2.2.0"
+      },
+      {
+        "p04": "install-package Microsoft.EntityFrameworkCore.SqlServer -Version 2.2.0",
+        "version": "2.2.0"
+      }
+    ],
+    "projectView": [
+      {
+        "p01": "install-package Microsoft.AspNetCore.Identity.UI -Version 2.2.0",
+        "version": "2.2.0"
+      },
+      {
+        "p02": "install-package automapper.extensions.microsoft.dependencyinjection -Version 3.0.1",
+        "version": "3.0.1"
+      }
+    ]
+  },
+  "migrationsCommands": [
+    {
+      "create": "add-migration initial -verbose -context AppDevIoDbContext",
+      "description": "Usado para gerar um novo arquivo das modificações que serão aplicadas nas tabelas do BD"
+    },
+    {
+      "update": "update-database -context AppDevIoDbContext",
+      "description": "Aplica ou atualiza os banco de dados do contexto informados as mudanças geradas no arquivo."
+    },
+    {
+      "generateCodeSql": "script-migration -context AppDevIoDbContext",
+      "description": "Gera um script .sql com a criação manual(caso precise) do BD"
+    }
+  ]
+}

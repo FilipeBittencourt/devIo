@@ -1,0 +1,9 @@
+.vscode
+.vs
+.consult
+.bkp
+.bin
+.obj
+*.log
+*.pdb
+*.dll
