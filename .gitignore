@@ -1,9 +1,13 @@
 .vscode
 .vs
-.consult
 .bkp
-.bin
-.obj
+src/appweb/bin/*
+src/appweb/obj/*
+src/business/bin/*
+src/business/obj/*
+src/data/bin/*
+src/data/obj/*
 *.log
 *.pdb
 *.dll
+*.cache
