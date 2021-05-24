@@ -1,0 +1,9 @@
+C:\NetCoreDevIO\devIo\MyAppDev\Src\Business\bin\Debug\netcoreapp2.2\Business.deps.json
+C:\NetCoreDevIO\devIo\MyAppDev\Src\Business\bin\Debug\netcoreapp2.2\Business.dll
+C:\NetCoreDevIO\devIo\MyAppDev\Src\Business\bin\Debug\netcoreapp2.2\Business.pdb
+C:\NetCoreDevIO\devIo\MyAppDev\Src\Business\obj\Debug\netcoreapp2.2\Business.csprojAssemblyReference.cache
+C:\NetCoreDevIO\devIo\MyAppDev\Src\Business\obj\Debug\netcoreapp2.2\Business.AssemblyInfoInputs.cache
+C:\NetCoreDevIO\devIo\MyAppDev\Src\Business\obj\Debug\netcoreapp2.2\Business.AssemblyInfo.cs
+C:\NetCoreDevIO\devIo\MyAppDev\Src\Business\obj\Debug\netcoreapp2.2\Business.csproj.CoreCompileInputs.cache
+C:\NetCoreDevIO\devIo\MyAppDev\Src\Business\obj\Debug\netcoreapp2.2\Business.dll
+C:\NetCoreDevIO\devIo\MyAppDev\Src\Business\obj\Debug\netcoreapp2.2\Business.pdb

@@ -10,4 +10,8 @@ src/data/obj/*
 *.log
 *.pdb
 *.dll
+<<<<<<< HEAD
 *.cache
+=======
+*.cache
+>>>>>>> 479a03c63bc82888dc68aa47ef3739f6bfa41677
