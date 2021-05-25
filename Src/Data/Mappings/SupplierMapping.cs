@@ -16,6 +16,10 @@ namespace Data.Mappings
                 .IsRequired()
                 .HasColumnType("varchar(100)");
 
+            builder.Property(p => p.FantasyName)
+                .IsRequired()
+                .HasColumnType("varchar(100)");
+
             builder.Property(p => p.Document)
                 .IsRequired()
                 .HasColumnType("varchar(100)");

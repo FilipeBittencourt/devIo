@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(AppDevIoDbContext))]
-    [Migration("20210520222932_initial")]
+    [Migration("20210525224557_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -19,7 +19,6 @@ namespace Data.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
-                
 
             modelBuilder.Entity("Business.Models.Address", b =>
                 {
@@ -119,6 +118,10 @@ namespace Data.Migrations
                     b.Property<bool>("Deleted");
 
                     b.Property<string>("Document")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("FantasyName")
                         .IsRequired()
                         .HasColumnType("varchar(100)");
 

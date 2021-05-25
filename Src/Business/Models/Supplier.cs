@@ -12,7 +12,9 @@ namespace Business.Models
         
 
         public string Name { get; set; }
-  
+
+        public string FantasyName { get; set; }
+
         public string Document { get; set; }
   
         public TypeSupplier TypeSupplier { get; set; }

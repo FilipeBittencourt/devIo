@@ -17,6 +17,7 @@ namespace Data.Migrations
                     Deleted = table.Column<bool>(nullable: false),
                     Active = table.Column<bool>(nullable: false),
                     Name = table.Column<string>(type: "varchar(100)", nullable: false),
+                    FantasyName = table.Column<string>(type: "varchar(100)", nullable: false),
                     Document = table.Column<string>(type: "varchar(100)", nullable: false),
                     TypeSupplier = table.Column<int>(nullable: false)
                 },
