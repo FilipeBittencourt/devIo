@@ -26,14 +26,21 @@ namespace AppWeb.ViewModels
         [DisplayName("Descrição")]
         public string Description { get; set; }
 
+        
         [NotMapped]
         public IFormFile ImageUpload { get; set; }
 
+        [DisplayName("Imagem")]
         public string Image { get; set; }
 
         [Required(ErrorMessage = "O campo {0} é requerido.")]
         [DisplayName("Preço")]
         public decimal Price { get; set; }
+
+        
+        [DisplayName("Ativo?")]
+        public bool Active { get; set; }
+
 
         /*EF Relation*/
         [NotMapped]

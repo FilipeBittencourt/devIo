@@ -16,6 +16,11 @@ namespace AppWeb.ViewModels
         [DisplayName("Nome")]
         public string Name { get; set; }
 
+        
+        
+        [DisplayName("Nome Fantasia")]
+        public string FantasyName { get; set; }
+
         [Required(ErrorMessage = "O campo {0} é requerido.")]
         [StringLength(200, ErrorMessage = "O campo {0} precisa se entre {2} e {1} caracteres", MinimumLength = 2)]
         [DisplayName("Documento")]
@@ -25,7 +30,9 @@ namespace AppWeb.ViewModels
         [DisplayName("Tipo")]
         public int TypeSupplier { get; set; }
 
-   
+        [DisplayName("Ativo?")]
+        public bool Active { get; set; }
+
         [DisplayName("Endereço")]
         public AddressViewModel Address { get; set; }
 
