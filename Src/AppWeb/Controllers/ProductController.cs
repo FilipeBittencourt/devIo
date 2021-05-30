@@ -2,9 +2,11 @@
 using AutoMapper;
 using Business.Interfaces;
 using Business.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace AppWeb.Controllers
@@ -25,7 +27,8 @@ namespace AppWeb.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(_mapper.Map<IEnumerable<ProductViewModel>>(await _productRepository.GetProductSupplies()));
+            //return View(_mapper.Map<IEnumerable<ProductViewModel>>(await _productRepository.GetProductSupplies()));
+            return View(_mapper.Map<IEnumerable<ProductViewModel>>(await _productRepository.GetAll()));
         }
 
 
@@ -65,10 +68,20 @@ namespace AppWeb.Controllers
             {
                 return View(productViewModel);
             }
- 
+
+            var imgPrefix = Guid.NewGuid()+"_";
+
+            if(!await UploadFile(productViewModel.ImageUpload, imgPrefix))
+            {
+                return View(productViewModel);
+            }
+
+            productViewModel.Image = imgPrefix + productViewModel.ImageUpload.FileName;
+
+
             await _productRepository.Create(_mapper.Map<Product>(productViewModel));
 
-            return View(productViewModel);
+            return RedirectToAction("Index");
 
         }
 
@@ -157,6 +170,26 @@ namespace AppWeb.Controllers
             GetAll()));
 
             return productView;           
+
+        }
+        private async Task<bool> UploadFile(IFormFile file, string prefix)
+        {
+            if(file.Length <= 0)
+            {
+                return false;
+            }
+            var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/imgUpload", prefix + file.FileName);
+
+            if (System.IO.File.Exists(path))
+            {
+                ModelState.AddModelError(string.Empty, "Já existe arquivo com esse nome");
+                return false;
+            }
+
+            var stream = new FileStream(path,FileMode.Create);
+            await file.CopyToAsync(stream);
+
+            return true;
 
         }
     }

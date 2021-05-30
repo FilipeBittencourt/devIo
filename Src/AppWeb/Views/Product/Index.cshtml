@@ -7,10 +7,10 @@
 <h3>@ViewData["Title"]</h3>
 
 <p>
-    <a class="btn btn-info btn-sm" asp-action="Create">Novo fornecedor</a>
+    <a class="btn btn-info btn-sm" asp-action="Create">Novo Produto</a>
 </p>
-<table class="table">
-    <thead>
+<table class="table table-hover">
+    <thead class="table-dark">  
         <tr>
             <th>
 
@@ -35,7 +35,8 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
+                <td>                  
+                    <img src="~/imgUpload/@item.Image" alt="@item.Image" style="width:70px; height:100px;" />
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
