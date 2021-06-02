@@ -32,8 +32,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
+        @foreach (var item in Model) {
             <tr>
                 <td>                  
                     <img src="~/imgUpload/@item.Image" alt="@item.Image" style="width:70px; height:100px;" />
@@ -59,6 +58,6 @@
                     <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id"><span class="fa fa-trash"></span></a>
                 </td>
             </tr>
-        }
+         }
     </tbody>
 </table>

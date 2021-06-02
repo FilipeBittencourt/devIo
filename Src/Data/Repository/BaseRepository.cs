@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace Data.Repository
@@ -50,11 +51,45 @@ namespace Data.Repository
 
         #region Update
         public virtual async Task Update(TEntity entity)
-        {
+        {   
+
             DbSet.Update(entity);
             await SaveChanges();
         }
         #endregion
+
+
+        public virtual async Task Update(TEntity entityNew, TEntity entityOld)
+        {
+
+
+            var entry = DbContext.Entry(entityNew);
+            var entryOld = DbContext.Entry(entityOld);
+
+            Type type = typeof(TEntity);
+            PropertyInfo[] properties = type.GetProperties();
+            foreach (PropertyInfo property in properties)
+            {
+                try
+                {
+                    if (property.GetValue(entityNew, null) == null)
+                    {
+                        entry.Property(property.Name).CurrentValue = entryOld.Property(property.Name).CurrentValue;
+                    }
+                }
+                catch
+                {
+
+                }
+            }
+            entryOld = null;
+            entry = null;
+
+
+            DbSet.Update(entityNew);
+            await SaveChanges();
+        }
+
 
         #region Delete
         public virtual async Task Delete(TEntity entity)

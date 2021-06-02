@@ -9,7 +9,7 @@ namespace Business.Models
         protected BaseEntity()
         {
             Id = Guid.NewGuid();
-            CreateAt = DateTime.Now;
+            UpdateAt = DateTime.Now;
             Deleted = false;
             Active = true;
         }

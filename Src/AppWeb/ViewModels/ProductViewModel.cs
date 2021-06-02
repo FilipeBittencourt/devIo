@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Serialization;
 
 namespace AppWeb.ViewModels
 {
@@ -26,11 +27,12 @@ namespace AppWeb.ViewModels
         [DisplayName("Descrição")]
         public string Description { get; set; }
 
-        
-        [NotMapped]
-        public IFormFile ImageUpload { get; set; }
 
         [DisplayName("Imagem")]
+        [NotMapped]      
+        public IFormFile ImageUpload { get; set; }
+
+        [DataMember(EmitDefaultValue = false)]
         public string Image { get; set; }
 
         [Required(ErrorMessage = "O campo {0} é requerido.")]
@@ -48,5 +50,8 @@ namespace AppWeb.ViewModels
 
         [NotMapped]
         public IEnumerable<SupplierViewModel> Suppliers { get; set; }
+
+
+ 
     }
 }

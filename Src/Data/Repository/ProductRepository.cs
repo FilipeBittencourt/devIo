@@ -11,21 +11,23 @@ namespace Data.Repository
 {
     public class ProductRepository : BaseRepository<Product>, IProductRepository
     {
-        public ProductRepository(AppDevIoDbContext context) :base(context) { }
+        public ProductRepository(AppDevIoDbContext context) : base(context) { }     
+    
 
-
-        public async Task<Product> GetProductSupplier(Guid id)
+        public async Task<IEnumerable<Product>> GetProductWithSupplies()
         {
             return await DbContext.Product.AsNoTracking().Include(f => f.Supplier)
-               .FirstOrDefaultAsync(p => p.Id == id);
+                .OrderBy(p => p.Name).ToListAsync();             
         }
 
-        public async Task<IEnumerable<Product>> GetProductSupplies()
+
+        public async Task<Product> GetProductWithSupplier(Guid id)
         {
             return await DbContext.Product.AsNoTracking().Include(f => f.Supplier)
-                .OrderBy(p => p.Name).ToListAsync();
-
+               .FirstOrDefaultAsync(p => p.Id == id);           
         }
+
+
 
         public async Task<IEnumerable<Product>> GetProductBySupplies(Guid supplierId)
         {

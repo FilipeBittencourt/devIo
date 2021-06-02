@@ -7,12 +7,11 @@ namespace Business.Interfaces
 {
     public interface IProductRepository : IBaseRepository<Product>
     {
-        Task<Product> GetProductSupplier(Guid id);
-
-        Task<IEnumerable<Product>> GetProductSupplies();
+        Task<IEnumerable<Product>> GetProductWithSupplies();
 
         Task<IEnumerable<Product>> GetProductBySupplies(Guid supplierId);
 
-        
+        Task<Product> GetProductWithSupplier(Guid id);      
+
     }
 }

@@ -15,7 +15,6 @@ namespace AppWeb.ViewModels
         [StringLength(100, ErrorMessage = "O campo {0} precisa se entre {2} e {1} caracteres", MinimumLength = 2)]
         [DisplayName("Nome")]
         public string Name { get; set; }
-
         
         
         [DisplayName("Nome Fantasia")]
@@ -36,7 +35,7 @@ namespace AppWeb.ViewModels
         [DisplayName("Endereço")]
         public AddressViewModel Address { get; set; }
 
-        public IEnumerable<ProductViewModel> Product { get; set; }
+        public IEnumerable<ProductViewModel> Products { get; set; }
     }
 
 }

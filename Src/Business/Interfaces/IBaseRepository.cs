@@ -16,6 +16,8 @@ namespace Business.Interfaces
         
         Task Update(TEntity entity);
 
+        Task Update(TEntity entityNew, TEntity entityOld);
+
         Task Delete(TEntity entity);
 
         Task Remove(Guid id);

@@ -23,6 +23,10 @@ namespace Data.Mappings
                .IsRequired()
                .HasColumnType("varchar(100)");
 
+            // 1 : 1 => Fornecedor : Endereco
+            //builder.HasOne(a => a.Supplier);          
+
+
             builder.ToTable("Product");
         }
     }

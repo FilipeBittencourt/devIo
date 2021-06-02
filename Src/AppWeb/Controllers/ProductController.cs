@@ -17,7 +17,9 @@ namespace AppWeb.Controllers
         private readonly ISupplierRepository _supplierRepository;
         private readonly IMapper _mapper;
 
-        public ProductController(IProductRepository productRepository, IMapper mapper, ISupplierRepository supplierRepository)
+        public ProductController(IProductRepository productRepository,
+                                IMapper mapper,
+                                ISupplierRepository supplierRepository)
         {
             _productRepository = productRepository;
             _mapper = mapper;
@@ -27,8 +29,9 @@ namespace AppWeb.Controllers
 
         public async Task<IActionResult> Index()
         {
-            //return View(_mapper.Map<IEnumerable<ProductViewModel>>(await _productRepository.GetProductSupplies()));
-            return View(_mapper.Map<IEnumerable<ProductViewModel>>(await _productRepository.GetAll()));
+    
+            return View(_mapper.Map<IEnumerable<ProductViewModel>>(await _productRepository.GetProductWithSupplies()));
+            
         }
 
 
@@ -111,11 +114,25 @@ namespace AppWeb.Controllers
             {
                 return View(productViewModel);
             }
+           
 
-            var product = _mapper.Map<Product>(productViewModel);
-            await _productRepository.Update(product);
+            if (productViewModel.ImageUpload != null)
+            {
+                var prefix = Guid.NewGuid() + "_";
+                if (!await UploadFile(productViewModel.ImageUpload, prefix))
+                {
+                    return View(productViewModel);
+                }
 
-            return View("Index");
+                productViewModel.Image = prefix + productViewModel.ImageUpload.FileName;
+            }
+
+            var productOld = _mapper.Map<Product>(await GetProductById(productViewModel.Id));
+            var product    = _mapper.Map<Product>(productViewModel);
+
+            await _productRepository.Update(product, productOld);
+
+            return RedirectToAction("Index");
         }
 
         // GET: Product/Delete/5
@@ -152,26 +169,19 @@ namespace AppWeb.Controllers
 
         private async Task<ProductViewModel> GetProductById(Guid id)
         {
-            
-            var product  = ( _mapper.Map<ProductViewModel>(await _productRepository.GetProductSupplier(id)));
-            
-            product.Suppliers = ( _mapper.Map<IEnumerable<SupplierViewModel>>(
-            await _supplierRepository.
-            GetAll()));
-
+            var product  = ( _mapper.Map<ProductViewModel>(await _productRepository.GetProductWithSupplier(id)));            
+            product.Suppliers = ( _mapper.Map<IEnumerable<SupplierViewModel>>( await _supplierRepository.GetAll()));
             return product;
-
         }
+
 
         private async Task<ProductViewModel> PopulateSupplier(ProductViewModel productView)
         {
-            productView.Suppliers = (_mapper.Map<IEnumerable<SupplierViewModel>>(
-            await _supplierRepository.
-            GetAll()));
-
-            return productView;           
-
+            productView.Suppliers = (_mapper.Map<IEnumerable<SupplierViewModel>>(await _supplierRepository.GetAll()));
+            return productView;
         }
+        
+        
         private async Task<bool> UploadFile(IFormFile file, string prefix)
         {
             if(file.Length <= 0)
